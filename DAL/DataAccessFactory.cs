@@ -30,5 +30,45 @@ namespace DAL
         {
             return new AdminAuthTokenRepo();
         }
+
+        public static IRepo<User, int, User> UserDataAccess()
+        {
+            return new UserRepo();
+        }
+
+        public static IAuth<User, string, string> UserAuthDataAccess()
+        {
+            return new UserRepo();
+        }
+
+        public static IRepo<UserAuthToken, string, UserAuthToken> UserAuthTokenDataAccess()
+        {
+            return new UserAuthTokenRepo();
+        }
+
+        public static IAuthExpire UserAuthExpireDataAccess()
+        {
+            return new UserAuthTokenRepo();
+        }
+
+        public static IRepo<Tutor, int, Tutor> TutorDataAccess()
+        {
+            return new TutorRepo();
+        }
+
+        public static IAuth<Tutor, string, string> TutorAuthDataAccess()
+        {
+            return new TutorRepo();
+        }
+
+        public static IRepo<TutorAuthToken, string, TutorAuthToken> TutorAuthTokenDataAccess()
+        {
+            return new TutorAuthTokenRepo();
+        }
+
+        public static IAuthExpire TutorAuthExpireDataAccess()
+        {
+            return new TutorAuthTokenRepo();
+        }
     }
 }

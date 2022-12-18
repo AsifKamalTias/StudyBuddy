@@ -77,6 +77,10 @@
     <Compile Include="Repos\AdminAuthTokenRepo.cs" />
     <Compile Include="Repos\AdminRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
+    <Compile Include="Repos\TutorAuthTokenRepo.cs" />
+    <Compile Include="Repos\TutorRepo.cs" />
+    <Compile Include="Repos\UserAuthTokenRepo.cs" />
+    <Compile Include="Repos\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
