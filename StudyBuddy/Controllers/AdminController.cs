@@ -62,16 +62,23 @@ namespace StudyBuddy.Controllers
             }
         }
 
+        [Route("api/admin/logout")]
+        [HttpPost]
+        [AdminLogged]
+        public HttpResponseMessage Logout()
+        {
+            //need to get auth token
+            return Request.CreateResponse(HttpStatusCode.OK, "Admin Logout");
+        }
+
         [Route("api/admin/dashboard")]
         [HttpPost]
         [AdminLogged]
         public HttpResponseMessage Dashboard()
         {
-            //var token = actionContext.Request.Headers.Authorization;
-            //var adminId = AdminAuthService.GetAdminId(token.ToString());
-            //var admin = AdminService.Get(adminId);
+            //need to get auth token
             
-            return Request.CreateResponse(HttpStatusCode.OK, "Wow");
+            return Request.CreateResponse(HttpStatusCode.OK, "Admin Dashboard");
         }
     }
 }
