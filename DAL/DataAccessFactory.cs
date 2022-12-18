@@ -26,7 +26,7 @@ namespace DAL
             return new AdminAuthTokenRepo();
         }
 
-        public static IAuthExpire AdminAuthExpireDataAccess()
+        public static IAuthToken AdminAuthTokenSpecialDataAccess()
         {
             return new AdminAuthTokenRepo();
         }

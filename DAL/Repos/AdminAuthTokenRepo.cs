@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdminAuthTokenRepo : Repo, IRepo<AdminAuthToken, string, AdminAuthToken>, IAuthExpire
+    internal class AdminAuthTokenRepo : Repo, IRepo<AdminAuthToken, string, AdminAuthToken>, IAuthToken
     {
         public AdminAuthToken Add(AdminAuthToken obj)
         {
@@ -50,6 +50,12 @@ namespace DAL.Repos
                 return db.SaveChanges() > 0;
             }
             return false;
+        }
+
+        public int GetRolePlayer(string tkey)
+        {
+            var token = Get(tkey);
+            return token.AdminId;
         }
     }
 }
