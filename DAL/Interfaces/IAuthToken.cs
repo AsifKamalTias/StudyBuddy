@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IAuthExpire
+    public interface IAuthToken
     {
         bool ExpireToken(string tkey);
+        int GetRolePlayer(string tkey); 
     }
 }
