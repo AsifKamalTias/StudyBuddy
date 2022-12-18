@@ -48,7 +48,12 @@ namespace BLL.Services
 
         public static bool ExpireToken(string tkey)
         {
-            return DataAccessFactory.TutorAuthExpireDataAccess().ExpireToken(tkey);
+            return DataAccessFactory.TutorAuthTokenSpecialDataAccess().ExpireToken(tkey);
+        }
+
+        public static int GetTutorId(string tkey)
+        {
+            return DataAccessFactory.TutorAuthTokenSpecialDataAccess().GetRolePlayer(tkey);
         }
     }
 }

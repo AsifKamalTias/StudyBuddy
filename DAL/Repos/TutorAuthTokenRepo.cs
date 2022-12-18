@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class TutorAuthTokenRepo : Repo, IRepo<TutorAuthToken, string, TutorAuthToken>, IAuthExpire
+    internal class TutorAuthTokenRepo : Repo, IRepo<TutorAuthToken, string, TutorAuthToken>, IAuthToken
     {
         public TutorAuthToken Add(TutorAuthToken obj)
         {
@@ -50,6 +50,11 @@ namespace DAL.Repos
                 return db.SaveChanges() > 0;
             }
             return false;
+        }
+        public int GetRolePlayer(string tkey)
+        {
+            var token = Get(tkey);
+            return token.TutorId;
         }
     }
 }

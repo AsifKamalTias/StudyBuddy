@@ -55,5 +55,6 @@ namespace BLL.Services
         {
             return DataAccessFactory.AdminAuthTokenSpecialDataAccess().GetRolePlayer(tkey);
         }
+       
     }
 }

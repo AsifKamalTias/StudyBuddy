@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserAuthTokenRepo : Repo, IRepo<UserAuthToken, string, UserAuthToken>, IAuthExpire
+    internal class UserAuthTokenRepo : Repo, IRepo<UserAuthToken, string, UserAuthToken>, IAuthToken
     {
         public UserAuthToken Add(UserAuthToken obj)
         {
@@ -50,6 +50,11 @@ namespace DAL.Repos
                 return db.SaveChanges() > 0;
             }
             return false;
+        }
+        public int GetRolePlayer(string tkey)
+        {
+            var token = Get(tkey);
+            return token.UserId;
         }
     }
 }

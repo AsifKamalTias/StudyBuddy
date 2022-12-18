@@ -46,10 +46,16 @@ namespace DAL
             return new UserAuthTokenRepo();
         }
 
-        public static IAuthExpire UserAuthExpireDataAccess()
+        public static IRepo<UserReport, int, UserReport> UserReportDataAccess()
+        {
+            return new UserReportRepo();
+        }
+
+        public static IAuthToken UserAuthTokenSpecialDataAccess()
         {
             return new UserAuthTokenRepo();
         }
+
 
         public static IRepo<Tutor, int, Tutor> TutorDataAccess()
         {
@@ -66,9 +72,15 @@ namespace DAL
             return new TutorAuthTokenRepo();
         }
 
-        public static IAuthExpire TutorAuthExpireDataAccess()
+        public static IRepo<TutorRatingFeedback, int, TutorRatingFeedback> TutorRatingFeedbackDataAccess()
+        {
+            return new TutorRatingFeedbackRepo();
+        }
+
+        public static IAuthToken TutorAuthTokenSpecialDataAccess()
         {
             return new TutorAuthTokenRepo();
         }
+
     }
 }
