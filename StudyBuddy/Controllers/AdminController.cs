@@ -39,6 +39,24 @@ namespace StudyBuddy.Controllers
             }
         }
 
+        [Route("api/admin/edit")]
+        [HttpPost]
+        [AdminLogged]
+        public HttpResponseMessage Update(AdminDTO admin)
+        {
+            try
+            {
+                var data = AdminService.Update(admin);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+        }
+
+        //Work
+
         [Route("api/admin/login")]
         [HttpPost]
         public HttpResponseMessage Login(LoginDTO login)
@@ -46,7 +64,7 @@ namespace StudyBuddy.Controllers
             try
             {
                 var data = AdminAuthService.Authenticate(login.UniqueIdentity, login.Password);
-                if(data != null)
+                if (data != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, data.TKey);
                 }
@@ -67,8 +85,23 @@ namespace StudyBuddy.Controllers
         [AdminLogged]
         public HttpResponseMessage Logout()
         {
-            //need to get auth token
-            return Request.CreateResponse(HttpStatusCode.OK, "Admin Logout");
+            try
+            {
+                var data = AdminAuthService.ExpireToken(Request.Headers.Authorization.ToString());
+                if(data)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Logout Successfully");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Something went wrong");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
         }
 
         [Route("api/admin/dashboard")]
@@ -76,9 +109,59 @@ namespace StudyBuddy.Controllers
         [AdminLogged]
         public HttpResponseMessage Dashboard()
         {
-            //need to get auth token
-            
-            return Request.CreateResponse(HttpStatusCode.OK, "Admin Dashboard");
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
         }
+
+        [Route("api/admin/profile")]
+        [HttpPost]
+        [AdminLogged]
+        public HttpResponseMessage Profile()
+        {
+            try
+            {
+                var admin = AdminAuthService.GetAdminId(Request.Headers.Authorization.ToString());
+                var data = AdminService.Get(admin);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/admin/profile/password")]
+        [HttpPost]
+        [AdminLogged]
+        public HttpResponseMessage UpdatePassword(AdminUpdatePasswordDTO dto)
+        {
+            try
+            {
+                var admin = AdminAuthService.GetAdminId(Request.Headers.Authorization.ToString());
+                var data = AdminService.UpdatePassword(admin, dto.Password);
+                if(data)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Password Changed");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Something went wrong");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+        }
+
     }
 }

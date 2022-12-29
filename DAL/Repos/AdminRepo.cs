@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdminRepo : Repo, IRepo<Admin, int, Admin>, IAuth<Admin, string, string>
+    internal class AdminRepo : Repo, IRepo<Admin, int, Admin>, IAuth<Admin, string, string>, IAdminSpecial
     {
         public Admin Add(Admin obj)
         {
@@ -50,6 +50,13 @@ namespace DAL.Repos
             db.Entry(dbobj).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
+        }
+
+        public bool UpdatePassword(int id, string password)
+        {
+            var dbobj = Get(id);
+            dbobj.Password = password;
+            return db.SaveChanges() > 0;
         }
     }
 }

@@ -63,5 +63,10 @@ namespace BLL.Services
             var data = DataAccessFactory.AdminDataAccess().Update(newobj);
             return mapper.Map<AdminDTO>(data);
         }
+
+        public static bool UpdatePassword(int id, string password)
+        {
+            return DataAccessFactory.AdminSpecialDataAccess().UpdatePassword(id, password);
+        }
     }
 }

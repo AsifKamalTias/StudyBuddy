@@ -28,6 +28,7 @@ namespace DAL.EF
         public DbSet<User> Users { get; set; }
         public DbSet<UserAuthToken> UserAuthTokens { get; set; }
         public DbSet<UserReport> UserReports { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
     }
 }

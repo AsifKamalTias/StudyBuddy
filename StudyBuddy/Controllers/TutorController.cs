@@ -1,0 +1,221 @@
+﻿using BLL.DTOs;
+using BLL.Services;
+using StudyBuddy.Auth;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Cors;
+
+namespace StudyBuddy.Controllers
+{
+    [EnableCors("*","*","*")]
+    public class TutorController : ApiController
+    {
+        [Route("api/tutor/tutors")]
+        [HttpGet]
+        [AdminLogged]
+        public HttpResponseMessage Get()
+        {
+            var data = TutorService.Get();
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+
+        [Route("api/tutor/registration")]
+        [HttpPost]
+        public HttpResponseMessage Registration(TutorRegistrationDTO tutor)
+        {
+
+            if (TutorService.ValidEmail(tutor.Email))
+            {
+                TutorDTO tutor1 = new TutorDTO();
+                tutor1.Name = tutor.Name;
+                tutor1.Email = tutor.Email;
+                tutor1.Password = tutor.Password;
+                tutor1.Photo = "";
+                tutor1.PhoneNumber = tutor.PhoneNumber;
+                tutor1.Description = tutor.Description;
+                tutor1.Address = tutor.Address;
+                tutor1.NID = tutor.NID;
+                tutor1.EducationLabel = tutor.EducationLabel;
+                tutor1.CurrentJob = tutor.CurrentJob;
+                tutor1.IsAccepted = false;
+                tutor1.IsBlocked = false;
+                tutor1.Created = DateTime.Now;
+                var data = TutorService.Add(tutor1);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Email Already Exist");
+            }
+
+        }
+
+
+
+        [Route("api/tutor/add")]
+        [HttpPost]
+        public HttpResponseMessage Add(TutorDTO tutor)
+        {
+            try
+            {
+                var data = TutorService.Add(tutor);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+
+        [Route("api/tutor/login")]
+        [HttpPost]
+        public HttpResponseMessage Login(LoginDTO login)
+        {
+            try
+            {
+                var data = TutorAuthService.Authenticate(login.UniqueIdentity, login.Password);
+                if (data != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data.TKey);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "Invalid Username or Password");
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+
+        [Route("api/tutor/signout")]
+        [HttpPost]
+        [TutorLogged]
+        public HttpResponseMessage SignOut()
+        {
+            try
+            {
+                var data = TutorAuthService.ExpireToken(Request.Headers.Authorization.ToString());
+                if (data)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Logout Successfully");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Something went wrong");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+
+        [Route("api/tutor/dashboard")]
+        [HttpPost]
+        [TutorLogged]
+        public HttpResponseMessage Dashboard()
+        {
+            try
+            {
+                var tutor = TutorAuthService.GetTutorId(Request.Headers.Authorization.ToString());
+                var data = TutorService.Get(tutor);
+                return Request.CreateResponse(HttpStatusCode.OK, data.Name);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+
+        //change
+
+
+
+        [Route("api/tutor/profile/data")]
+        [HttpPost]
+        [TutorLogged]
+        public HttpResponseMessage TutorProfileData()
+        {
+            try
+            {
+                var tutor = TutorAuthService.GetTutorId(Request.Headers.Authorization.ToString());
+                var data = TutorService.Get(tutor);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+
+        [Route("api/tutor/profile/edit")]
+        [HttpPost]
+        [TutorLogged]
+        public HttpResponseMessage TutorProfileUpdate(TutorEditDTO dto)
+        {
+            try
+            {
+                var tutorId = TutorAuthService.GetTutorId(Request.Headers.Authorization.ToString());
+                var data = TutorService.EditProfile(tutorId, dto.Name, dto.Password, dto.PhoneNumber, dto.Description, dto.Address, dto.EducationLabel, dto.CurrentJob);
+                if (data)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Profile Updated");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Something went wrong");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/tutor/info/{id}")]
+        [HttpGet]
+        public HttpResponseMessage GetTutor(int id)
+        {
+            var data = TutorService.Get(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+        [Route("api/tutor/accept/{id}")]
+        [HttpPost]
+        [AdminLogged]
+        public HttpResponseMessage Accept(int id)
+        {
+            var data = TutorService.AcceptTutor(id);
+            if(data)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "Accepted");
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Someting went wrong");
+            }
+        }
+
+    }
+}
