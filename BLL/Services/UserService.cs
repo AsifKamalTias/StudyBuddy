@@ -63,6 +63,7 @@ namespace BLL.Services
             var data = DataAccessFactory.UserDataAccess().Update(newobj);
             return mapper.Map<UserDTO>(data);
         }
+<<<<<<< HEAD
 
         public static bool ValidateOTP(string email, string otp)
         {
@@ -85,5 +86,7 @@ namespace BLL.Services
                 return true;
             }
         }
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     }
 }

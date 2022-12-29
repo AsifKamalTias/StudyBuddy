@@ -10,6 +10,10 @@ namespace DAL.Repos
 {
     internal class TutorRatingFeedbackRepo : Repo, IRepo<TutorRatingFeedback, int, TutorRatingFeedback>
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public TutorRatingFeedback Add(TutorRatingFeedback obj)
         {
             db.TutorRatingFeedbacks.Add(obj);

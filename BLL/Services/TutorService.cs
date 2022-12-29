@@ -10,59 +10,59 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public class TutorService
-    {
-        public static TutorDTO Add(TutorDTO data)
+        public class TutorService
         {
-            var config = new MapperConfiguration(c => {
-                c.CreateMap<TutorDTO, Tutor>();
-                c.CreateMap<Tutor, TutorDTO>();
-            });
-            var mapper = new Mapper(config);
-            var dbobj = mapper.Map<Tutor>(data);
-            var ret = DataAccessFactory.TutorDataAccess().Add(dbobj);
-            return mapper.Map<TutorDTO>(ret);
-        }
-
-        public static List<TutorDTO> Get()
-        {
-            var data = DataAccessFactory.TutorDataAccess().Get();
-            var config = new MapperConfiguration(c => {
-                c.CreateMap<Tutor, TutorDTO>();
-            });
-            var mapper = new Mapper(config);
-            return mapper.Map<List<TutorDTO>>(data);
-        }
-
-        public static TutorDTO Get(int id)
-        {
-            var data = DataAccessFactory.TutorDataAccess().Get(id);
-            var config = new MapperConfiguration(c =>
+            public static TutorDTO Add(TutorDTO data)
             {
-                c.CreateMap<Tutor, TutorDTO>();
-            });
-            var mapper = new Mapper(config);
-            var Tutor = mapper.Map<TutorDTO>(data);
-            return Tutor;
-        }
+                var config = new MapperConfiguration(c => {
+                    c.CreateMap<TutorDTO, Tutor>();
+                    c.CreateMap<Tutor, TutorDTO>();
+                });
+                var mapper = new Mapper(config);
+                var dbobj = mapper.Map<Tutor>(data);
+                var ret = DataAccessFactory.TutorDataAccess().Add(dbobj);
+                return mapper.Map<TutorDTO>(ret);
+            }
 
-        public static bool Delete(int id)
-        {
-            return DataAccessFactory.TutorDataAccess().Delete(id);
-        }
-
-        public static TutorDTO Update(TutorDTO obj)
-        {
-            var config = new MapperConfiguration(c =>
+            public static List<TutorDTO> Get()
             {
-                c.CreateMap<Tutor, TutorDTO>();
-                c.CreateMap<TutorDTO, Tutor>();
-            });
-            var mapper = new Mapper(config);
-            var newobj = mapper.Map<Tutor>(obj);
-            var data = DataAccessFactory.TutorDataAccess().Update(newobj);
-            return mapper.Map<TutorDTO>(data);
-        }
+                var data = DataAccessFactory.TutorDataAccess().Get();
+                var config = new MapperConfiguration(c => {
+                    c.CreateMap<Tutor, TutorDTO>();
+                });
+                var mapper = new Mapper(config);
+                return mapper.Map<List<TutorDTO>>(data);
+            }
+
+            public static TutorDTO Get(int id)
+            {
+                var data = DataAccessFactory.TutorDataAccess().Get(id);
+                var config = new MapperConfiguration(c =>
+                {
+                    c.CreateMap<Tutor, TutorDTO>();
+                });
+                var mapper = new Mapper(config);
+                var Tutor = mapper.Map<TutorDTO>(data);
+                return Tutor;
+            }
+
+            public static bool Delete(int id)
+            {
+                return DataAccessFactory.TutorDataAccess().Delete(id);
+            }
+
+            public static TutorDTO Update(TutorDTO obj)
+            {
+                var config = new MapperConfiguration(c =>
+                {
+                    c.CreateMap<Tutor, TutorDTO>();
+                    c.CreateMap<TutorDTO, Tutor>();
+                });
+                var mapper = new Mapper(config);
+                var newobj = mapper.Map<Tutor>(obj);
+                var data = DataAccessFactory.TutorDataAccess().Update(newobj);
+                return mapper.Map<TutorDTO>(data);
+            }
 
         public static bool EditProfile(int id, string name, string password, string phonenumber, string description, string address, string educationlabel, string currentjob)
         {
@@ -87,5 +87,5 @@ namespace BLL.Services
         {
             return DataAccessFactory.TutorSpecialDataAccess().Accept(id);
         }
-    }
+        }
 }

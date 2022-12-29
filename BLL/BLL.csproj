@@ -54,6 +54,7 @@
     <Compile Include="DTOs\CreateBlogDTO.cs" />
     <Compile Include="DTOs\CreatePostDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
+<<<<<<< HEAD
     <Compile Include="DTOs\PaymentCreateDTO.cs" />
     <Compile Include="DTOs\PaymentDTO.cs" />
     <Compile Include="DTOs\TuitionDTO.cs" />
@@ -82,6 +83,19 @@
     <Compile Include="Services\TutorAuthService.cs" />
     <Compile Include="Services\TutorRatingFeedbackService.cs" />
     <Compile Include="Services\TutorReportService.cs" />
+=======
+    <Compile Include="DTOs\TutorAuthTokenDTO.cs" />
+    <Compile Include="DTOs\TutorDTO.cs" />
+    <Compile Include="DTOs\TutorRatingFeedbackDTO.cs" />
+    <Compile Include="DTOs\UserAuthTokenDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="DTOs\UserReportDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminAuthService.cs" />
+    <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\TutorAuthService.cs" />
+    <Compile Include="Services\TutorRatingFeedbackService.cs" />
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     <Compile Include="Services\TutorService.cs" />
     <Compile Include="Services\UserAuthService.cs" />
     <Compile Include="Services\UserReportService.cs" />

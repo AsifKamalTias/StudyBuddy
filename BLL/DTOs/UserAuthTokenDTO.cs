@@ -17,7 +17,11 @@ namespace BLL.DTOs
         [Required]
         public System.DateTime CreationTime { get; set; }
         public Nullable<System.DateTime> ExpirationTime { get; set; }
+<<<<<<< HEAD
         [Required]
+=======
+        [ForeignKey("User")]
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public int UserId { get; set; }
     }
 }

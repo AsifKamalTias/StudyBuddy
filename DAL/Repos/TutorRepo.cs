@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
+<<<<<<< HEAD
     internal class TutorRepo : Repo, IRepo<Tutor, int, Tutor>, IAuth<Tutor, string, string>, ITutorSpecial
+=======
+    internal class TutorRepo : Repo, IRepo<Tutor, int, Tutor>, IAuth<Tutor, string, string>
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     {
         public Tutor Add(Tutor obj)
         {
@@ -17,20 +21,30 @@ namespace DAL.Repos
             return null;
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public Tutor Authenticate(string uniqueIdentity, string password)
         {
             var Tutor = db.Tutors.FirstOrDefault(
                     a =>
                     a.Email.Equals(uniqueIdentity) &&
+<<<<<<< HEAD
                     a.Password.Equals(password) && a.IsBlocked == false
+=======
+                    a.Password.Equals(password)
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
                 );
             return Tutor;
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public bool Delete(int id)
         {
             var dbobj = Get(id);
@@ -38,22 +52,31 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public List<Tutor> Get()
         {
             return db.Tutors.ToList();
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public Tutor Get(int id)
         {
             return db.Tutors.Find(id);
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public Tutor Update(Tutor obj)
         {
             var dbobj = Get(obj.Id);
@@ -61,6 +84,7 @@ namespace DAL.Repos
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
+<<<<<<< HEAD
 
 
 
@@ -95,5 +119,7 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
 
         }
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     }
 }

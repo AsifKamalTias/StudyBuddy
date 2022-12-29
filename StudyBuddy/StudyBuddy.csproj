@@ -102,8 +102,11 @@
     <Compile Include="Auth\TutorLogged.cs" />
     <Compile Include="Auth\UserLogged.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\TuitionController.cs" />
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

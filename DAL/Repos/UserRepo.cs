@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
+<<<<<<< HEAD
     internal class UserRepo : Repo, IRepo<User, int, User>, IAuth<User, string, string>, IUserSpecial
+=======
+    internal class UserRepo : Repo, IRepo<User, int, User>, IAuth<User, string, string>
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     {
         public User Add(User obj)
         {
@@ -22,7 +26,11 @@ namespace DAL.Repos
             var User = db.Users.FirstOrDefault(
                     a =>
                     a.Email.Equals(uniqueIdentity) &&
+<<<<<<< HEAD
                     a.Password.Equals(password) && a.IsVerified == true && a.IsBlocked== false
+=======
+                    a.Password.Equals(password)
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
                 );
             return User;
         }
@@ -51,6 +59,7 @@ namespace DAL.Repos
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
+<<<<<<< HEAD
 
         public bool CheckOTP(string email, string otp)
         {
@@ -85,5 +94,7 @@ namespace DAL.Repos
                 if(user==null) return false;
             return true;
         }
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     }
 }

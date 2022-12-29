@@ -6,14 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+<<<<<<< HEAD
 using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace StudyBuddy.Controllers
 {
+<<<<<<< HEAD
     [EnableCors("*","*","*")]
     public class UserController : ApiController
     {
@@ -75,6 +79,33 @@ namespace StudyBuddy.Controllers
            {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
            }
+=======
+    [EnableCors("*", "*", "*")]
+    public class UserController : ApiController
+    {
+
+        [Route("api/user/users")]
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            var data = UserService.Get();
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+        [Route("api/user/add")]
+        [HttpPost]
+        public HttpResponseMessage Add(UserDTO user)
+        {
+            try
+            {
+                var data = UserService.Add(user);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         }
 
         [Route("api/user/login")]
@@ -96,12 +127,17 @@ namespace StudyBuddy.Controllers
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+=======
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
             }
         }
 
         [Route("api/user/dashboard")]
         [HttpPost]
+<<<<<<< HEAD
         [UserLogged]
         public HttpResponseMessage Dashboard()
         {
@@ -190,6 +226,16 @@ namespace StudyBuddy.Controllers
         {
             var data = UserService.Get();
             return Request.CreateResponse(HttpStatusCode.OK, data);
+=======
+        [AdminLogged]
+        public HttpResponseMessage Dashboard()
+        {
+            //var token = actionContext.Request.Headers.Authorization;
+            //var adminId = AdminAuthService.GetAdminId(token.ToString());
+            //var admin = AdminService.Get(adminId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, "Wow");
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         }
     }
 }

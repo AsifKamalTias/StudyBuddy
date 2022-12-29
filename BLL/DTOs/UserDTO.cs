@@ -23,7 +23,10 @@ namespace BLL.DTOs
         [StringLength(50)]
         [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{5,}", ErrorMessage = "Your password must be at least 5 characters long and contain at least 1 letter and 1 number")]
         public string Password { get; set; }
+<<<<<<< HEAD
         
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         [Required]
         public bool IsBlocked { get; set; }
         [Required]

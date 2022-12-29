@@ -45,6 +45,7 @@ namespace DAL
             return new AdminAuthTokenRepo();
         }
 
+<<<<<<< HEAD
         public static IRepo<Tuition, int, Tuition> TuitionDataAccess()
         {
             return new TuitionRepo();
@@ -65,6 +66,8 @@ namespace DAL
             return new TuitionReportRepo();
         }
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public static IRepo<User, int, User> UserDataAccess()
         {
             return new UserRepo();
@@ -90,10 +93,13 @@ namespace DAL
             return new UserAuthTokenRepo();
         }
 
+<<<<<<< HEAD
         public static IUserSpecial UserSpecialDataAccess()
         {
             return new UserRepo();
         }
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
 
         public static IRepo<Tutor, int, Tutor> TutorDataAccess()
         {
@@ -120,6 +126,7 @@ namespace DAL
             return new TutorAuthTokenRepo();
         }
 
+<<<<<<< HEAD
         public static IRepo<Payment, int, Payment> PaymentDataAccess()
         {
             return new PaymentRepo();
@@ -135,5 +142,7 @@ namespace DAL
             return new BlogRepo();
         }
 
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     }
 }

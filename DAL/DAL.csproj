@@ -90,9 +90,12 @@
     <Compile Include="Repos\BlogRepo.cs" />
     <Compile Include="Repos\PaymentRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
+<<<<<<< HEAD
     <Compile Include="Repos\TuitionRepo.cs" />
     <Compile Include="Repos\TuitionReportRepo.cs" />
     <Compile Include="Repos\TuitionTutorRequestRepo.cs" />
+=======
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     <Compile Include="Repos\TutorAuthTokenRepo.cs" />
     <Compile Include="Repos\TutorRatingFeedbackRepo.cs" />
     <Compile Include="Repos\TutorRepo.cs" />

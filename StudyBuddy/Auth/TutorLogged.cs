@@ -11,6 +11,10 @@ namespace StudyBuddy.Auth
 {
     public class TutorLogged : AuthorizationFilterAttribute
     {
+<<<<<<< HEAD
+=======
+    {
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             var token = actionContext.Request.Headers.Authorization;

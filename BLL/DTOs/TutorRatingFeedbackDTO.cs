@@ -18,10 +18,14 @@ namespace BLL.DTOs
         public string Feedback { get; set; }
         [Required]
         public DateTime Created { get; set; }
+<<<<<<< HEAD
 
         [Required]
         public int UserId { get; set; }
         [Required]
+=======
+        public int UserId { get; set; }
+>>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public int TutorId { get; set; }
     }
 }
