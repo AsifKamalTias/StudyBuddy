@@ -11,27 +11,17 @@ using System.Web.Http.Cors;
 
 namespace StudyBuddy.Controllers
 {
-<<<<<<< HEAD
-    [EnableCors("*","*","*")]
-=======
     [EnableCors("*", "*", "*")]
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     public class TutorController : ApiController
     {
         [Route("api/tutor/tutors")]
         [HttpGet]
-<<<<<<< HEAD
         [AdminLogged]
-=======
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         public HttpResponseMessage Get()
         {
             var data = TutorService.Get();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-
-<<<<<<< HEAD
-
 
         [Route("api/tutor/registration")]
         [HttpPost]
@@ -64,10 +54,6 @@ namespace StudyBuddy.Controllers
 
         }
 
-
-
-=======
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         [Route("api/tutor/add")]
         [HttpPost]
         public HttpResponseMessage Add(TutorDTO tutor)
@@ -83,11 +69,6 @@ namespace StudyBuddy.Controllers
             }
         }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
         [Route("api/tutor/login")]
         [HttpPost]
         public HttpResponseMessage Login(LoginDTO login)
@@ -104,19 +85,12 @@ namespace StudyBuddy.Controllers
                     return Request.CreateResponse(HttpStatusCode.Unauthorized, "Invalid Username or Password");
                 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-<<<<<<< HEAD
 
 
         [Route("api/tutor/signout")]
@@ -234,7 +208,6 @@ namespace StudyBuddy.Controllers
             }
         }
 
-=======
         [Route("api/tutor/dashboard")]
         [HttpPost]
         [AdminLogged]
@@ -246,6 +219,5 @@ namespace StudyBuddy.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, "Wow");
         }
->>>>>>> 2ccc8a2b5bc256b80f5cd5cd850b1c3469c244f5
     }
 }
